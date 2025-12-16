@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net48;net8.0</TargetFrameworks>
+
+		<!-- NuGet package metadata -->
+		<PackageId>Wifi.Toolbox</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Atilla Kati</Authors>
+		<Description>The Wifi.Toolbox.Tools contains our basic methods, which we wrote during the course and which are very helpful for implementing applications in the console. Each student is required to maintain this package independently. The necessary infrastructure will be prepared in class.
+
+The following methods are included in the package:
+- Reading in numerical values
+- Methods for designing console interfaces</Description>
+		<PackageTags>utilities;framework48;framework8</PackageTags>
+		<RepositoryUrl>https://github.com/atillakati/sw_developer_2025_atilla/tree/develop/20251211/Wifi.Toolbox</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+
+		<!-- Optional: if you keep AssemblyInfo.cs -->
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Title>WIFI Toolbox</Title>
+		<PackageProjectUrl>https://github.com/atillakati/sw_developer_2025_atilla/tree/develop/20251211/Wifi.Toolbox</PackageProjectUrl>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<PackageIcon>package-icon.png</PackageIcon>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Figgle.Fonts" Version="0.6.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="package-icon.png" Pack="true" PackagePath="\" />
+	    <None Include="readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>	
+</Project>
+
