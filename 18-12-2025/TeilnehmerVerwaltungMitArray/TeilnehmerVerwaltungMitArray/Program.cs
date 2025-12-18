@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeilnehmerVerwaltungMitArray.Datentypen;
+using static System.Collections.Specialized.BitVector32;
 
 namespace TeilnehmerVerwaltungMitArray
 {
@@ -21,21 +23,63 @@ namespace TeilnehmerVerwaltungMitArray
              * - Fehlertolerante Umsetzung der Eingaben
              * - Formatierte Zusammenfassung der Teilnehmerdaten ausgeben
              * 
-             * */           
-            string userInput = string.Empty;
-            int count = 0;
-            //Deklaration 
-            Teilnehmer einTeilnehmer;
-            Teilnehmer[] teilnehmerListe;
-
-            //Initialisierung
-            //einTeilnehmer.Name = string.Empty;
-            //einTeilnehmer.Wohnadresse.Wohnort = string.Empty;
-            //einTeilnehmer.Wohnadresse.Plz = 0;
-            //einTeilnehmer.Geburtsdatum = DateTime.MinValue;
+             * */
+            
+            bool valid = false;
+            string selection = string.Empty;
 
             //1. Ausgabe Header
             CreateHeader("Teilnehmer-Verwaltung v3.0");
+
+            Console.WriteLine("\t\tDaten erfassen:........A");
+            Console.WriteLine("\t\tDaten darstellen:......B");
+
+            do
+            {
+                Console.WriteLine("Bitte wählen:");
+                 selection = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(selection) ||
+                selection.Length > 1 ||
+                "AB".IndexOf(selection.ToUpper()) <0)
+                {
+                    valid = false;
+                }
+                else
+                {
+                valid = true;   
+                }
+
+            }
+            while (!valid);
+
+            if(selection.ToUpper() == "A")
+            {
+                TeilnehmerErfassen();
+            }
+            if(selection.ToUpper() == "B")
+             {
+                Teilnehmer[] teilnehmerListe = ReadTeilnehmerFormFile("meineTeilnehmerListe.csv");
+                DisplayTeilnehmerData(teilnehmerListe);
+            }
+
+                TeilnehmerErfassen();
+
+        }
+
+        private static Teilnehmer[] ReadTeilnehmerFormFile(string fileName)
+        {
+            //ToDo: Implement Einlesen von CSV Daten aus einer Datei ????
+            throw new NotImplementedException();
+        }
+
+        private static void TeilnehmerErfassen()
+        {
+            //Deklaration 
+            Teilnehmer einTeilnehmer;
+            Teilnehmer[] teilnehmerListe;
+            int count = 0;
+
 
             //1.b Abfrage Anzahl der zu erfassenden Teilnehmer
             count = GetInt("Bitte die Anzahl der Teilnhmer angeben (0 = ENDE): ");
@@ -56,9 +100,6 @@ namespace TeilnehmerVerwaltungMitArray
             //3. Ausgabe der Daten
             Console.WriteLine("\nFolgende Daten wurden erfasst:\n");
             DisplayTeilnehmerData(teilnehmerListe);
-         
-
-            
         }
 
         private static void WriteFile(string filename, Teilnehmer tn)
